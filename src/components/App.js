@@ -3,22 +3,26 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import Header from "./common/Header";
 import CoursesPage from "./pages/CoursesPage";
+import { Route, Switch, Redirect } from "react-router-dom";
+import NotFoundPage from "./pages/NotFoundPage";
+import CoursePage from "./pages/CoursePage";
 
-// Downside of this kind of approach is that this routing makes a full server roundtrip
 function App() {
-    const route = window.location.pathname;
-
-    function getPage() {
-        if (route === '/about') return <AboutPage/>;
-        if (route === '/courses') return <CoursesPage/>;
-
-        return <HomePage/>
-    }
-
     return (
         <div className='container-fluid'>
             <Header/>
-            {getPage()}
+            {/*Order matter here => Switch render the LAST route when others don't match.  Think of it as switch clause default section*/}
+            <Switch>
+                <Route path="/" exact component={HomePage} />
+                <Route path="/about" component={AboutPage} />
+
+                <Route path="/courses" component={CoursesPage} />
+                <Route path="/course/:slug" component={CoursePage} />
+
+                <Redirect from='/about-page' to='about' />
+
+                <Route component={NotFoundPage} />
+            </Switch>
         </div>
     );
 }
