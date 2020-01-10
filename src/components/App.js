@@ -6,19 +6,22 @@ import CoursesPage from "./pages/CoursesPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage";
 import CoursePage from "./pages/CoursePage";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
     return (
         <div className='container-fluid'>
+            <ToastContainer autoClose={3000} hideProgressBar />
             <Header/>
             {/*Order matter here => Switch render the LAST route when others don't match.  Think of it as switch clause default section*/}
             <Switch>
                 <Route path="/" exact component={HomePage} />
                 <Route path="/about" component={AboutPage} />
 
+                <Route path="/courses" component={CoursesPage} />
+                
                 <Route path="/course/:slug" component={CoursePage} />
                 <Route path="/course" component={CoursePage} />
-                <Route path="/courses" component={CoursesPage} />
 
                 <Redirect from='/about-page' to='about' />
 

@@ -7,11 +7,11 @@ function Header() {
         <nav>
             <NavLink activeStyle={activeStyle} to='/' exact className='btn btn-link'>Home</NavLink>
             <span> | </span>
-            <NavLink activeStyle={activeStyle} to='about' className='btn btn-link'>About</NavLink>
+            <NavLink activeStyle={activeStyle} to='/about' className='btn btn-link'>About</NavLink>
             <span> | </span>
-            <NavLink activeStyle={activeStyle} to='courses' className='btn btn-link'>Courses</NavLink>
+            <NavLink activeStyle={activeStyle} to='/courses' className='btn btn-link'>Courses</NavLink>
             <span> | </span>
-            <NavLink activeStyle={activeStyle} to='course' className='btn btn-link'>Add course</NavLink>
+            <NavLink activeStyle={activeStyle} to='/course' className='btn btn-link'>Add course</NavLink>
         </nav>
     )
 }

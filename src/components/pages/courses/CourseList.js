@@ -1,9 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import * as AuthorApi from '../../../api/authorApi';
 
 function CourseList(props) {
     const getLink = (slug) => `/course/${slug}`;
+
+    const [authors, setAuthors] = useState([]);
+
+    useEffect(() => {
+        AuthorApi.getAuthors().then(_authors => {
+            setAuthors(_authors);
+        });
+    }, [props.courses]);
+
+    const getAuthor = (authorId) => authors.find(x => x.id === authorId)?.name;
 
     return (
         <>
@@ -20,7 +31,7 @@ function CourseList(props) {
                     return (
                         <tr key={course.id}>
                             <td><Link to={getLink(course.slug)}>{course.title}</Link></td>
-                            <td>{course.authorId}</td>
+                            <td>{getAuthor(course.authorId)}</td>
                             <td>{course.category}</td>
                         </tr>
                     );
