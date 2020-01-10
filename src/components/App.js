@@ -16,8 +16,9 @@ function App() {
                 <Route path="/" exact component={HomePage} />
                 <Route path="/about" component={AboutPage} />
 
-                <Route path="/courses" component={CoursesPage} />
                 <Route path="/course/:slug" component={CoursePage} />
+                <Route path="/course" component={CoursePage} />
+                <Route path="/courses" component={CoursesPage} />
 
                 <Redirect from='/about-page' to='about' />
 
